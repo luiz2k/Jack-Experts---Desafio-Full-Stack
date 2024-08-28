@@ -1,3 +1,10 @@
+export type UpdateSessionInput = {
+	token: string;
+	createdAt?: Date;
+	expiresAt?: Date;
+	isValid?: boolean;
+};
+
 export type GenerateSessionOutput = {
 	session: {
 		token: string;
@@ -15,4 +22,6 @@ export interface ISessionService {
 	verifyToken(token: string): Promise<Payload | false>;
 
 	generateSession(userId: string): Promise<GenerateSessionOutput>;
+
+	updateSession(data: UpdateSessionInput): Promise<void>;
 }
