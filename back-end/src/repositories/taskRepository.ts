@@ -8,9 +8,11 @@ import type {
 	UpdateTaskInput,
 } from "./interfaces/ITaskRepository";
 
+// Responsável por executar as operações no banco de dados relacionadas as tarefas
 export class TaskRepository implements ITaskRepository {
 	taskRepository = AppDataSource.getRepository(Task);
 
+	// Salva uma nova tarefa
 	async create(data: TaskInput): Promise<TaskOutput> {
 		const { userId, ...rest } = data;
 
@@ -24,6 +26,7 @@ export class TaskRepository implements ITaskRepository {
 		return task;
 	}
 
+	// Busca uma tarefa
 	async findOne(id: string): Promise<TaskOutput | null> {
 		const task = await this.taskRepository.findOne({
 			where: {
@@ -40,6 +43,7 @@ export class TaskRepository implements ITaskRepository {
 		return task;
 	}
 
+	// Busca todas as tarefas
 	async findAll(userId: string): Promise<TaskOutput[]> {
 		const tasks = await this.taskRepository.find({
 			where: {
@@ -52,10 +56,13 @@ export class TaskRepository implements ITaskRepository {
 		return tasks;
 	}
 
+	// Atualiza uma tarefa
 	async update(data: UpdateTaskInput): Promise<void> {
 		await this.taskRepository.update(data.id, data);
 	}
 
+
+	// Remove uma tarefa
 	async remove(id: string): Promise<void> {
 		await this.taskRepository.delete(id);
 	}
