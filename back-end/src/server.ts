@@ -2,19 +2,20 @@ import "express-async-errors";
 import { App } from "./app";
 import { AppDataSource } from "./database/data-source";
 import { userRoutes } from "./routes/userRoute";
+import { env } from "./validations/envValidation";
 
 async function main(): Promise<void> {
 	try {
 		await AppDataSource.initialize();
 
 		const app = new App();
-		app.config("*");
+		app.config(env.CORS);
 
 		app.routes("/user", userRoutes.getRoutes());
 
 		app.errorHandler();
 
-		app.start(3333);
+		app.start(env.PORT);
 	} catch (error) {
 		console.error(`ERROR NA INICIALIZAÇÃO DO SERVIDOR: ${error}`);
 	}
