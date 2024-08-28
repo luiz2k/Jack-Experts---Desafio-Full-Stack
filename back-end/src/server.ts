@@ -1,11 +1,14 @@
 import { App } from "./app";
 import { AppDataSource } from "./database/data-source";
+import { userRoutes } from "./routes/userRoute";
 
 async function main(): Promise<void> {
 	try {
 		await AppDataSource.initialize();
 
 		const app = new App();
+
+		app.routes("/user", userRoutes.getRoutes());
 
 		app.errorHandler();
 
