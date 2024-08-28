@@ -19,12 +19,10 @@ class UserRoutes {
 		this.routes();
 	}
 
-	// Configura as rotas
 	private routes() {
 		this.router.post("/", this.userController.create.bind(this.userController));
 	}
 
-	// Retorna as rotas configuradas
 	public getRoutes() {
 		return this.router;
 	}
