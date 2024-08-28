@@ -1,7 +1,7 @@
 import express from "express";
 import { ErrorMiddleware } from "./middlewares/errorMiddleware";
 
-import type { Express } from "express";
+import type { Express, Router } from "express";
 
 export class App {
 	private app: Express;
@@ -10,6 +10,10 @@ export class App {
 	constructor() {
 		this.app = express();
 		this.errorMiddleware = new ErrorMiddleware();
+	}
+
+	public routes(path: string, routes: Router): void {
+		this.app.use(path, routes);
 	}
 
 	public errorHandler(): void {
