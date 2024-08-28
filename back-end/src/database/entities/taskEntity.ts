@@ -5,6 +5,7 @@ import {
 	ManyToOne,
 	PrimaryGeneratedColumn,
 } from "typeorm";
+import { TaskStatus } from "../../repositories/interfaces/ITaskRepository";
 import { User } from "./userEntity";
 
 @Entity({ name: "tasks" })
@@ -15,8 +16,8 @@ export class Task {
 	@Column({ type: "varchar", length: 20 })
 	description!: string;
 
-	@Column({ type: "boolean", default: false })
-	completed!: boolean;
+	@Column({ type: "varchar", enum: TaskStatus, default: false })
+	status!: TaskStatus;
 
 	@Column({ name: "created_at", type: "date" })
 	createdAt!: Date;
