@@ -7,6 +7,8 @@ async function main(): Promise<void> {
 
 		const app = new App();
 
+		app.errorHandler();
+
 		app.start(3333);
 	} catch (error) {
 		console.error(`ERROR NA INICIALIZAÇÃO DO SERVIDOR: ${error}`);
