@@ -1,3 +1,4 @@
+import "express-async-errors";
 import { App } from "./app";
 import { AppDataSource } from "./database/data-source";
 import { userRoutes } from "./routes/userRoute";
@@ -7,6 +8,7 @@ async function main(): Promise<void> {
 		await AppDataSource.initialize();
 
 		const app = new App();
+		app.config("*");
 
 		app.routes("/user", userRoutes.getRoutes());
 

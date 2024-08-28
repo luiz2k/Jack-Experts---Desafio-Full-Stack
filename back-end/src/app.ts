@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import { ErrorMiddleware } from "./middlewares/errorMiddleware";
 
@@ -10,6 +11,11 @@ export class App {
 	constructor() {
 		this.app = express();
 		this.errorMiddleware = new ErrorMiddleware();
+	}
+
+	public config(CORS: string): void {
+		this.app.use(express.json());
+		this.app.use(cors({ origin: CORS }));
 	}
 
 	public routes(path: string, routes: Router): void {
