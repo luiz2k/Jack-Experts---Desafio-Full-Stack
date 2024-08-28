@@ -13,7 +13,7 @@ import type {
 export class SessionRepository implements ISessionRepository {
 	sessionRepository = AppDataSource.getRepository(Session);
 
-	// Salva a sessão do usuário
+	// Salva uma nova sessão
 	public async createSession(data: CreateSessionInput): Promise<void> {
 		const { userId, ...rest } = data;
 
@@ -25,7 +25,7 @@ export class SessionRepository implements ISessionRepository {
 		await this.sessionRepository.save(session);
 	}
 
-	// Busca a sessão do usuário
+	// Busca uma sessão
 	public async findSession(data: SessionInput): Promise<SessionOutput | null> {
 		const { userId, ...rest } = data;
 
@@ -48,12 +48,12 @@ export class SessionRepository implements ISessionRepository {
 		return session;
 	}
 
-	// Atualiza a sessão
+	// Atualiza uma sessão
 	public async updateSession(data: UpdateSessionInput): Promise<void> {
 		await this.sessionRepository.update(data.id, data);
 	}
 
-	// Remove a sessão
+	// Remove uma sessão
 	public async removeSession(data: SessionInput): Promise<void> {
 		const { userId, ...rest } = data;
 
