@@ -21,7 +21,7 @@ export class Session {
 	@Column({ name: "expires_at", type: "date" })
 	expiresAt!: Date;
 
-	@Column({ name: "is_valid", type: "boolean" })
+	@Column({ name: "is_valid", type: "boolean", default: true })
 	isValid!: boolean;
 
 	@ManyToOne(
