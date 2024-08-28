@@ -11,7 +11,8 @@ import type {
 export class UserService implements IUserService {
 	constructor(private readonly UserRepository: IUserRepository) {}
 
-	// Cria um novo usuário
+	// Verifica se o usuário existe no sistema
+	// Se não existir, cria um novo com os dados recebidos
 	async create(data: UserInput): Promise<UserOutput> {
 		const userExists = await this.UserRepository.findByEmail(data.email);
 
