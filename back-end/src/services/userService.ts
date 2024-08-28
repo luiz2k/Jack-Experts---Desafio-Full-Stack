@@ -1,3 +1,4 @@
+import bcryptjs from "bcryptjs";
 import { ConflictError } from "../helpers/errorHandler";
 
 import type { IUserRepository } from "../repositories/interfaces/IUserRepository";
@@ -12,7 +13,7 @@ export class UserService implements IUserService {
 	constructor(private readonly UserRepository: IUserRepository) {}
 
 	// Verifica se o usuário existe no sistema
-	// Se não existir, cria um novo com os dados recebidos
+	// Se não existir, faz a criptografia da senha e salva o usuário no sistema
 	async create(data: UserInput): Promise<UserOutput> {
 		const userExists = await this.UserRepository.findByEmail(data.email);
 
@@ -20,7 +21,14 @@ export class UserService implements IUserService {
 			throw new ConflictError("E-mail já cadastrado.");
 		}
 
-		const user = await this.UserRepository.create(data);
+		const SALT = 10;
+
+		const hashPassword = bcryptjs.hashSync(data.password, SALT);
+
+		const user = await this.UserRepository.create({
+			...data,
+			password: hashPassword,
+		});
 
 		return {
 			id: user.id,
