@@ -16,7 +16,7 @@ export class ErrorMiddleware {
 			? error.message
 			: "Erro interno do servidor.";
 
-		return res.status(error.statusCode).json({
+		return res.status(statusCode).json({
 			statusCode: statusCode,
 			message: message,
 			paths: zodErrors,
