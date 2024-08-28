@@ -8,8 +8,6 @@ import type { IUserService } from "../services/interfaces/IUserService";
 export class UserController {
 	constructor(private readonly userService: IUserService) {}
 
-	// Válida se os dados recebido pelo body está correto
-	// Se tiver tudo correto, envia os dados para o serviço de usuários
 	async create(req: Request, res: Response): Promise<Response> {
 		const isValidData = createUserSchema.safeParse(req.body);
 
