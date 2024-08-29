@@ -57,10 +57,9 @@ export class TaskRepository implements ITaskRepository {
 	}
 
 	// Atualiza uma tarefa
-	async update(data: UpdateTaskInput): Promise<void> {
-		await this.taskRepository.update(data.id, data);
+	async update(id: string, data: UpdateTaskInput): Promise<void> {
+		await this.taskRepository.update(id, data);
 	}
-
 
 	// Remove uma tarefa
 	async remove(id: string): Promise<void> {

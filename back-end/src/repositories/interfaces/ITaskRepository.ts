@@ -19,9 +19,8 @@ export type TaskOutput = {
 };
 
 export type UpdateTaskInput = {
-	id: string;
 	description?: string;
-	completed?: TaskStatus;
+	status?: TaskStatus;
 };
 
 export interface ITaskRepository {
@@ -31,7 +30,7 @@ export interface ITaskRepository {
 
 	findAll(userId: string): Promise<TaskOutput[]>;
 
-	update(data: UpdateTaskInput): Promise<void>;
+	update(id: string, data: UpdateTaskInput): Promise<void>;
 
 	remove(id: string): Promise<void>;
 }
