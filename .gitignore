@@ -2,3 +2,4 @@
 **/.env
 
 back-end/dist
+back-end/.db
