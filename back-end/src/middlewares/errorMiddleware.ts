@@ -16,6 +16,8 @@ export class ErrorMiddleware {
 			? error.message
 			: "Erro interno do servidor.";
 
+		console.error(error);
+
 		return res.status(statusCode).json({
 			statusCode: statusCode,
 			message: message,
