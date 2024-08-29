@@ -11,9 +11,9 @@
     "dev": "tsx --watch src/server.ts",
     "test": "vitest",
     "typeorm": "typeorm-ts-node-commonjs",
-    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/database/data-source ./src/database/migrations/init",
-    "migration:run": "npm run typeorm migration:run -- -d ./src/database/data-source",
-    "migration:revert": "npm run typeorm migration:revert -- -d ./src/database/data-source"
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/database/data-source src/database/migrations/init",
+    "migration:run": "npm run typeorm migration:run -- -d src/database/data-source",
+    "migration:revert": "npm run typeorm migration:revert -- -d src/database/data-source"
   },
   "keywords": [],
   "author": "",
