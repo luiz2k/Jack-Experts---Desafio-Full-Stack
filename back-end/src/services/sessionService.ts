@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
+import { UnauthorizedError } from "../helpers/errorHandler";
 import { env } from "../validations/envValidation";
 
-import { UnauthorizedError } from "../helpers/errorHandler";
 import type { ISessionRepository } from "../repositories/interfaces/ISessionRepository";
 import type {
 	GenerateSessionOutput,
@@ -10,6 +10,7 @@ import type {
 	UpdateSessionInput,
 } from "./interfaces/ISessionService";
 
+// Serviço responsável por lidar com a regra de negócio da sessão
 export class SessionService implements ISessionService {
 	constructor(private readonly sessionRepository: ISessionRepository) {}
 
@@ -28,7 +29,8 @@ export class SessionService implements ISessionService {
 	public async generateSession(userId: string): Promise<GenerateSessionOutput> {
 		const TIMESTAMP_IN_MILLISECONDS = Date.now();
 		const TIMESTAMP_IN_SECONDS = Math.floor(TIMESTAMP_IN_MILLISECONDS / 1000);
-		const EXPIRES_IN_ONE_HOUR = TIMESTAMP_IN_SECONDS + 60 * 60;
+		const ONE_HOUR = 60 * 60;
+		const EXPIRES_IN_ONE_HOUR = TIMESTAMP_IN_SECONDS + ONE_HOUR;
 		const EXPIRES_IN_ONE_HOUR_IN_MILLISECONDS = EXPIRES_IN_ONE_HOUR * 1000;
 
 		const sessionPayload: Payload = {
