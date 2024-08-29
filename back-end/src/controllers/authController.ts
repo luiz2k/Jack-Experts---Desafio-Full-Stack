@@ -1,4 +1,5 @@
 import { UnauthorizedError } from "../helpers/errorHandler";
+import { HttpStatusCode } from "../helpers/httpStatusCode";
 import { loginSchema, logoutSchema } from "../validations/authValidation";
 
 import type { Request, Response } from "express";
@@ -17,7 +18,8 @@ export class AuthController {
 
 		const token = await this.authService.login(isValidData.data);
 
-		return res.status(200).json({
+		return res.status(HttpStatusCode.OK).json({
+			statusCode: HttpStatusCode.OK,
 			message: "Login realizado com sucesso.",
 			data: token,
 		});
@@ -35,7 +37,8 @@ export class AuthController {
 
 		await this.authService.logout({ token: isValidData.data });
 
-		return res.status(200).json({
+		return res.status(HttpStatusCode.OK).json({
+			statusCode: HttpStatusCode.OK,
 			message: "Logout efetuado com sucesso.",
 		});
 	}

@@ -1,4 +1,5 @@
 import { BadRequestError } from "../helpers/errorHandler";
+import { HttpStatusCode } from "../helpers/httpStatusCode";
 import { createUserSchema } from "../validations/userValidation";
 
 import type { Request, Response } from "express";
@@ -19,7 +20,8 @@ export class UserController {
 
 		const user = await this.userService.create(isValidData.data);
 
-		return res.status(201).json({
+		return res.status(HttpStatusCode.CREATED).json({
+			statusCode: HttpStatusCode.CREATED,
 			message: "Usuário criado com sucesso.",
 			data: user,
 		});

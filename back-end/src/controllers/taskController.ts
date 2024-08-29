@@ -1,4 +1,5 @@
 import { BadRequestError } from "../helpers/errorHandler";
+import { HttpStatusCode } from "../helpers/httpStatusCode";
 import {
 	createTaskSchema,
 	updateTaskSchema,
@@ -25,7 +26,8 @@ export class TaskController {
 
 		const task = await this.taskService.create({ ...isValidData.data, userId });
 
-		return res.status(201).json({
+		return res.status(HttpStatusCode.CREATED).json({
+			statusCode: HttpStatusCode.CREATED,
 			message: "Tarefa criada com sucesso.",
 			data: task,
 		});
@@ -44,7 +46,8 @@ export class TaskController {
 
 		const task = await this.taskService.findOne(isValidId.data, userId);
 
-		return res.status(200).json({
+		return res.status(HttpStatusCode.OK).json({
+			statusCode: HttpStatusCode.OK,
 			message: "Tarefa encontrada.",
 			data: task,
 		});
@@ -55,7 +58,8 @@ export class TaskController {
 
 		const tasks = await this.taskService.findAll(userId);
 
-		return res.status(200).json({
+		return res.status(HttpStatusCode.OK).json({
+			statusCode: HttpStatusCode.OK,
 			message: "Tarefas encontradas.",
 			data: tasks,
 		});
@@ -78,7 +82,8 @@ export class TaskController {
 
 		await this.taskService.update(isValidId.data, userId, isValidData.data);
 
-		return res.status(200).json({
+		return res.status(HttpStatusCode.OK).json({
+			statusCode: HttpStatusCode.OK,
 			message: "Tarefa atualizada.",
 			data: isValidData.data,
 		});
@@ -95,7 +100,8 @@ export class TaskController {
 
 		await this.taskService.remove(isValidId.data, userId);
 
-		return res.status(200).json({
+		return res.status(HttpStatusCode.OK).json({
+			statusCode: HttpStatusCode.OK,
 			message: "Tarefa removida.",
 		});
 	}
