@@ -10,7 +10,8 @@
     "start": "node dist/server.js",
     "dev": "tsx --watch src/server.ts",
     "test": "vitest",
-    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/database/data-source ./src/database/migrations/migration",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/database/data-source ./src/database/migrations/init",
     "migration:run": "npm run typeorm migration:run -- -d ./src/database/data-source",
     "migration:revert": "npm run typeorm migration:revert -- -d ./src/database/data-source"
   },
@@ -26,6 +27,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^22.5.0",
     "@types/swagger-ui-express": "^4.1.6",
+    "ts-node": "^10.9.2",
     "tsx": "^4.18.0",
     "typescript": "^5.5.4",
     "vitest": "^2.0.5"
