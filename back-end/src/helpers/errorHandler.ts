@@ -1,6 +1,7 @@
 // Classes responsável por gerar instâncias de erros de acordo com o tipo de erro
 
 import { formatZodErrors } from "./formatZodErrors";
+import { HttpStatusCode } from "./httpStatusCode";
 
 import type { ZodIssue } from "zod";
 import type { ZodErrors } from "../types/error";
@@ -28,40 +29,30 @@ export class BadRequestError extends ErrorBase {
 		public readonly message: string,
 		zodErrors?: ZodIssue[],
 	) {
-		const statusCode: number = 400;
-
-		super(statusCode, message, zodErrors);
+		super(HttpStatusCode.BAD_REQUEST, message, zodErrors);
 	}
 }
 
 export class UnauthorizedError extends ErrorBase {
 	constructor(message: string) {
-		const statusCode: number = 401;
-
-		super(statusCode, message);
+		super(HttpStatusCode.UNAUTHORIZED, message);
 	}
 }
 
 export class ForbiddenError extends ErrorBase {
 	constructor(message: string) {
-		const statusCode: number = 403;
-
-		super(statusCode, message);
+		super(HttpStatusCode.FORBIDDEN, message);
 	}
 }
 
 export class NotFoundError extends ErrorBase {
 	constructor(message: string) {
-		const statusCode: number = 404;
-
-		super(statusCode, message);
+		super(HttpStatusCode.NOT_FOUND, message);
 	}
 }
 
 export class ConflictError extends ErrorBase {
 	constructor(message: string) {
-		const statusCode: number = 409;
-
-		super(statusCode, message);
+		super(HttpStatusCode.CONFLICT, message);
 	}
 }
