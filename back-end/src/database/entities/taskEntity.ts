@@ -16,10 +16,14 @@ export class Task {
 	@Column({ type: "varchar", length: 20 })
 	description!: string;
 
-	@Column({ type: "varchar", enum: TaskStatus, default: false })
+	@Column({ type: "varchar", enum: TaskStatus, default: "pending" })
 	status!: TaskStatus;
 
-	@Column({ name: "created_at", type: "date" })
+	@Column({
+		name: "created_at",
+		type: "date",
+		default: () => "CURRENT_TIMESTAMP",
+	})
 	createdAt!: Date;
 
 	@ManyToOne(
