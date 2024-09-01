@@ -1,7 +1,12 @@
+import { Outlet } from "react-router";
+import { AuthProvider } from "./modules/shared/contexts/authContext";
+
 export default function App() {
 	return (
-		<div>
-			<h1 className="text-3xl uppercase text-center">Página inicial</h1>
+		<div className="bg-neutral-100">
+			<AuthProvider>
+				<Outlet />
+			</AuthProvider>
 		</div>
 	);
 }
