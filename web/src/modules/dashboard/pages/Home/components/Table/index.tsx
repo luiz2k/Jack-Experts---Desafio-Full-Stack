@@ -1,0 +1,46 @@
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
+import { useContext } from "react";
+import { TaskContext } from "../../context";
+import { TableData } from "./components/TableData";
+
+export function TaskTable() {
+	const { tasksFound } = useContext(TaskContext);
+
+	return (
+		<div className="border rounded-md bg-background">
+			<Table className="whitespace-nowrap">
+				<TableHeader>
+					<TableRow>
+						<TableHead className="w-1/3 min-w-[120px]">Descrição</TableHead>
+						<TableHead className="w-1/3 min-w-[120px]">Status</TableHead>
+						<TableHead className="w-1/3 min-w-[120px]">Data</TableHead>
+						<TableHead className="w-1/3 min-w-[120px]" />
+					</TableRow>
+				</TableHeader>
+
+				<TableBody>
+					{tasksFound.length ? (
+						<>
+							{tasksFound.map((task) => (
+								<TableData key={task.id} task={task} />
+							))}
+						</>
+					) : (
+						<TableRow>
+							<TableCell colSpan={4} className="text-center">
+								Nenhuma tarefa foi encontrada.
+							</TableCell>
+						</TableRow>
+					)}
+				</TableBody>
+			</Table>
+		</div>
+	);
+}
