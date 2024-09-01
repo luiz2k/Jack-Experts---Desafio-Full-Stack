@@ -6,10 +6,8 @@ export type UpdateSessionInput = {
 };
 
 export type GenerateSessionOutput = {
-	session: {
-		token: string;
-		expiresIn: number;
-	};
+	token: string;
+	expiresIn: number;
 };
 
 export type Payload = {

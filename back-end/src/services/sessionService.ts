@@ -49,10 +49,8 @@ export class SessionService implements ISessionService {
 		});
 
 		return {
-			session: {
-				token: token,
-				expiresIn: EXPIRES_IN_ONE_HOUR_IN_MILLISECONDS,
-			},
+			token: token,
+			expiresIn: EXPIRES_IN_ONE_HOUR_IN_MILLISECONDS,
 		};
 	}
 
