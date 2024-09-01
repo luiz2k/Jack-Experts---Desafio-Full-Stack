@@ -15,10 +15,10 @@ export class Session {
 	@Column({ type: "varchar" })
 	token!: string;
 
-	@Column({ name: "created_at", type: "date" })
+	@Column({ name: "created_at", type: "datetime" })
 	createdAt!: Date;
 
-	@Column({ name: "expires_at", type: "date" })
+	@Column({ name: "expires_at", type: "datetime" })
 	expiresAt!: Date;
 
 	@Column({ name: "is_valid", type: "boolean", default: true })
