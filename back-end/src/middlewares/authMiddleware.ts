@@ -7,10 +7,10 @@ import type { ISessionService } from "../services/interfaces/ISessionService";
 
 // Middleware responsável por lidar com a autenticação
 class AuthMiddleware {
-	constructor(private readonly jwtService: ISessionService) {}
+	constructor(private readonly sessionService: ISessionService) {}
 
 	// Verifica se o token de autenticação é válido
-	// Se for válido coloca o payload no req.user
+	// Se for válido coloca o payload no `req.user`
 	public async handle(
 		req: Request,
 		_res: Response,
@@ -28,7 +28,7 @@ class AuthMiddleware {
 			throw new UnauthorizedError("Token inválido.");
 		}
 
-		const payload = await this.jwtService.verifyToken(token);
+		const payload = await this.sessionService.verifySession(token);
 
 		if (!payload) {
 			throw new UnauthorizedError("Token inválido.");
