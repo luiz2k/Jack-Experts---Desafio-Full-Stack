@@ -17,7 +17,7 @@ export type Payload = {
 };
 
 export interface ISessionService {
-	verifyToken(token: string): Promise<Payload | false>;
+	verifySession(token: string): Promise<Payload | false>;
 
 	generateSession(userId: string): Promise<GenerateSessionOutput>;
 
