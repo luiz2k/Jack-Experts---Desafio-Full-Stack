@@ -14,10 +14,30 @@ import type {
 export class SessionService implements ISessionService {
 	constructor(private readonly sessionRepository: ISessionRepository) {}
 
-	// Verifica se o token é válido
-	public async verifyToken(token: string): Promise<Payload | false> {
+	// Verifica a validade do token/sessão
+	public async verifySession(token: string): Promise<Payload | false> {
 		try {
 			const decoded = jwt.verify(token, env.TOKEN_SECRET) as Payload;
+
+			const session = await this.sessionRepository.findSession({
+				userId: decoded.sub,
+				token: token,
+			});
+
+			// Se o token não existir no banco de dados, retorna false
+			if (!session) {
+				throw Error;
+			}
+
+			// Se o token for inválido, retorna false
+			if (session.isValid === false) {
+				throw Error;
+			}
+
+			// Se o token expirou, retorna false
+			if (session.expiresAt < new Date()) {
+				throw Error;
+			}
 
 			return decoded;
 		} catch {
@@ -57,7 +77,7 @@ export class SessionService implements ISessionService {
 	// Verifica se o token é válido e se ele existe no banco de dados
 	// Se tiver tudo correto, atualiza a sessão no banco de dados
 	public async updateSession(data: UpdateSessionInput): Promise<void> {
-		const verify = await this.verifyToken(data.token);
+		const verify = await this.verifySession(data.token);
 
 		if (!verify) {
 			throw new UnauthorizedError("Sessão inválida.");
