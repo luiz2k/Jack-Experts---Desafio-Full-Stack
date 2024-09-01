@@ -1,6 +1,6 @@
 export enum TaskStatus {
-	pending = "pending",
-	completed = "completed",
+	Pending = "pending",
+	Completed = "completed",
 }
 
 export type TaskInput = {
