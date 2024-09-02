@@ -4,6 +4,7 @@ import { ErrorMiddleware } from "./middlewares/errorMiddleware";
 
 import type { Express, Router } from "express";
 
+// Classe principal da aplicação
 export class App {
 	private app: Express;
 	private errorMiddleware: ErrorMiddleware;
@@ -13,19 +14,23 @@ export class App {
 		this.errorMiddleware = new ErrorMiddleware();
 	}
 
+	// Configura o CORS e o middleware de JSON
 	public config(CORS: string): void {
 		this.app.use(express.json());
 		this.app.use(cors({ origin: CORS }));
 	}
 
+	// Configura as rotas da aplicação
 	public routes(path: string, routes: Router): void {
 		this.app.use(path, routes);
 	}
 
+	// Configura o middleware de erro
 	public errorHandler(): void {
 		this.app.use(this.errorMiddleware.handle);
 	}
 
+	// Inicia o servidor
 	public start(port: number): void {
 		this.app.listen(port, (): void => {
 			console.log(`Servidor iniciado na porta ${port}!`);
