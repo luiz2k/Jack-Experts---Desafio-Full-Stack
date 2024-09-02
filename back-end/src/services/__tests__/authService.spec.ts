@@ -1,24 +1,28 @@
 import { SessionRepository } from "../../tests/__mocks__/sessionRepository";
 import { UserRepository } from "../../tests/__mocks__/userRepository";
 import { AuthService } from "../authService";
+import { SessionService } from "../sessionService";
+import { UserService } from "../userService";
 
 import type { ISessionRepository } from "../../repositories/interfaces/ISessionRepository";
 import type { IUserRepository } from "../../repositories/interfaces/IUserRepository";
 import type { IAuthService } from "../interfaces/IAuthService";
 import type { ISessionService } from "../interfaces/ISessionService";
-import { SessionService } from "../sessionService";
+import type { IUserService } from "../interfaces/IUserService";
 
 describe("authService", () => {
 	let userRepository: IUserRepository;
+	let userService: IUserService;
 	let sessionRepository: ISessionRepository;
 	let sessionService: ISessionService;
 	let authService: IAuthService;
 
 	beforeEach(() => {
 		userRepository = new UserRepository();
+		userService = new UserService(userRepository);
 		sessionRepository = new SessionRepository();
 		sessionService = new SessionService(sessionRepository);
-		authService = new AuthService(userRepository, sessionService);
+		authService = new AuthService(userService, sessionService);
 	});
 
 	describe("login", () => {
