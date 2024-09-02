@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import { UnauthorizedError } from "../helpers/errorHandler";
 
-import type { IUserRepository } from "../repositories/interfaces/IUserRepository";
 import type {
 	IAuthService,
 	LoginInput,
@@ -11,11 +10,12 @@ import type {
 	GenerateSessionOutput,
 	ISessionService,
 } from "./interfaces/ISessionService";
+import type { IUserService } from "./interfaces/IUserService";
 
 // Serviço responsável por lidar com a regra de negócio da autenticação
 export class AuthService implements IAuthService {
 	constructor(
-		private readonly userRepository: IUserRepository,
+		private readonly userService: IUserService,
 		private readonly sessionService: ISessionService,
 	) {}
 
@@ -23,7 +23,7 @@ export class AuthService implements IAuthService {
 	// Se existir, verifica se a senha é a correta
 	// Se for, gera uma nova sessão e retorna a mesma
 	public async login(data: LoginInput): Promise<GenerateSessionOutput> {
-		const user = await this.userRepository.findByEmail(data.email);
+		const user = await this.userService.findByEmail(data.email);
 
 		if (!user) {
 			throw new UnauthorizedError("E-mail ou senha inválidos");

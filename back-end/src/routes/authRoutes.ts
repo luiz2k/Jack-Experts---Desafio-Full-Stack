@@ -5,6 +5,7 @@ import { SessionRepository } from "../repositories/sessionRepository";
 import { UserRepository } from "../repositories/userRepository";
 import { AuthService } from "../services/authService";
 import { SessionService } from "../services/sessionService";
+import { UserService } from "../services/userService";
 
 // Rotas relacionadas a autenticação
 class AuthRoutes {
@@ -13,9 +14,10 @@ class AuthRoutes {
 
 	constructor() {
 		const userRepository = new UserRepository();
+		const userService = new UserService(userRepository);
 		const sessionRepository = new SessionRepository();
 		const sessionService = new SessionService(sessionRepository);
-		const authService = new AuthService(userRepository, sessionService);
+		const authService = new AuthService(userService, sessionService);
 
 		this.authController = new AuthController(authService);
 
