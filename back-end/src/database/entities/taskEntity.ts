@@ -8,6 +8,7 @@ import {
 import { TaskStatus } from "../../repositories/interfaces/ITaskRepository";
 import { User } from "./userEntity";
 
+// Entidade de tarefa
 @Entity({ name: "tasks" })
 export class Task {
 	@PrimaryGeneratedColumn("uuid")
@@ -26,6 +27,8 @@ export class Task {
 	})
 	createdAt!: Date;
 
+	// Relacionamento
+	// Uma tarefa pertence a um usuário
 	@ManyToOne(
 		() => User,
 		(user) => user.tasks,

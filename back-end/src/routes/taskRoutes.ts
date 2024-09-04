@@ -4,6 +4,7 @@ import { authMiddleware } from "../middlewares/authMiddleware";
 import { TaskRepository } from "../repositories/taskRepository";
 import { TaskService } from "../services/taskService";
 
+// Rotas relacionadas a tarefas
 class TaskRoutes {
 	private router: Router;
 	private taskController: TaskController;

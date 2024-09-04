@@ -7,6 +7,7 @@ import {
 } from "typeorm";
 import { User } from "./userEntity";
 
+// Entidade de sessão
 @Entity({ name: "sessions" })
 export class Session {
 	@PrimaryGeneratedColumn("uuid")
@@ -24,6 +25,8 @@ export class Session {
 	@Column({ name: "is_valid", type: "boolean", default: true })
 	isValid!: boolean;
 
+	// Relacionamento
+	// Uma sessão pertence a um usuário
 	@ManyToOne(
 		() => User,
 		(user) => user.session,
