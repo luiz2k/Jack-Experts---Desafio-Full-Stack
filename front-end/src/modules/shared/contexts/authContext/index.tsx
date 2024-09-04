@@ -1,18 +1,16 @@
 import { createContext, useEffect } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { getSession } from "../../helpers/getSession";
 import { signOut } from "../../services/signOut";
 
 export const AuthContext = createContext(null);
 
 // Contexto responsável pelo controle de autenticação do usuário
-// E tambem pelo controle de rotas privadas
 export function AuthProvider({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
-	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
 	const session = getSession();
@@ -28,7 +26,9 @@ export function AuthProvider({
 
 				const expirationDate = expiresIn - TWO_MINUTES;
 
-				if (expirationDate < Date.now()) {
+				const sessionExpired = expirationDate < Date.now();
+
+				if (sessionExpired) {
 					await signOut();
 
 					navigate("/entrar");
@@ -36,19 +36,6 @@ export function AuthProvider({
 			}
 		})();
 	}, [session, navigate]);
-
-	const PUBLIC_ROUTES: string[] = ["/entrar", "/registro"];
-	const PRIVATE_ROUTES: string[] = ["/"];
-
-	// Impede o acesso a rotas de autenticação quando estiver autenticado
-	if (session && PUBLIC_ROUTES.includes(pathname)) {
-		return <Navigate to="/" />;
-	}
-
-	// Impede o acesso a rotas privadas quando estiver deslogado
-	if (!session && PRIVATE_ROUTES.includes(pathname)) {
-		return <Navigate to="/entrar" />;
-	}
 
 	return <AuthContext.Provider value={null}>{children}</AuthContext.Provider>;
 }
