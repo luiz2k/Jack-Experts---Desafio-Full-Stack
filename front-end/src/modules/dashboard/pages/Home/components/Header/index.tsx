@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SearchInput from "./components/SearchInput";
 import { SignOutButton } from "./components/SignOutButton";
 
+// Cabeçalho da aplicação
 export function Header() {
 	return (
 		<header className="p-5 gap-2.5 border-b bg-primary flex items-center justify-between">

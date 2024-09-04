@@ -22,11 +22,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { TaskContext } from "../../context";
 import { createTask } from "../../services";
 
 import type { z } from "zod";
-import { TaskContext } from "../../context";
 
+// Responsável por criar uma nova tarefa
 export function CreateTask() {
 	const { getUpdatedTasks } = useContext(TaskContext);
 

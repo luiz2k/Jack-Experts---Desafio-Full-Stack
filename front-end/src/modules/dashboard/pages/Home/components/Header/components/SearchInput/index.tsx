@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { useContext } from "react";
 import { TaskContext } from "../../../../context";
 
+// Responsável por fazer a busca de uma tarefa
 export default function SearchInput() {
 	const { search, handleSearch } = useContext(TaskContext);
 
@@ -16,7 +17,7 @@ export default function SearchInput() {
 				type="search"
 				placeholder="Busque tarefas..."
 				value={search}
-				onChange={(e) => handleSearch(e.target.value)}
+				onChange={(event) => handleSearch(event.target.value)}
 				className="pl-8 pr-4 py-2 bg-secondary rounded-md border border-input focus:outline-none focus:ring-1 focus:ring-primary"
 			/>
 		</div>
