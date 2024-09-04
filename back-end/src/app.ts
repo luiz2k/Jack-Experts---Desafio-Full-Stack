@@ -1,8 +1,10 @@
 import cors from "cors";
 import express from "express";
+import swaggerUi from "swagger-ui-express";
 import { ErrorMiddleware } from "./middlewares/errorMiddleware";
 
 import type { Express, Router } from "express";
+import { swaggerDocument } from "./docs/swaggerDocument";
 
 // Classe principal da aplicação
 export class App {
@@ -28,6 +30,10 @@ export class App {
 	// Configura o middleware de erro
 	public errorHandler(): void {
 		this.app.use(this.errorMiddleware.handle);
+	}
+
+	public swaggerDocumentation(path: string): void {
+		this.app.use(path, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 	}
 
 	// Inicia o servidor
