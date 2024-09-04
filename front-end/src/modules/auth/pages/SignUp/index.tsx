@@ -19,10 +19,12 @@ import { createUser } from "./services";
 
 import type { z } from "zod";
 
+// Página de registro de usuário
 export function SignUpPage() {
 	const navigate = useNavigate();
 
-	const [message, setMessage] = useState({
+	// State responsável pelo feedback de erro/sucesso
+	const [status, setStatus] = useState({
 		message: "Preencha os dados abaixo para criar sua conta",
 		color: "",
 	});
@@ -47,7 +49,8 @@ export function SignUpPage() {
 			const errorMessage =
 				error instanceof Error ? error.message : "Ocorreu um erro inesperado.";
 
-			setMessage({ message: errorMessage, color: "text-red-500" });
+			// Define o status de acordo com a resposta do back-end
+			setStatus({ message: errorMessage, color: "text-red-500" });
 		}
 	};
 
@@ -56,8 +59,8 @@ export function SignUpPage() {
 			<div className="w-full h-screen sm:h-fit sm:max-w-md p-6 space-y-6 bg-card rounded-lg shadow-lg">
 				<div className="text-center">
 					<h1 className="text-3xl font-bold">Crie sua conta</h1>
-					<p className={`text-muted-foreground ${message.color}`}>
-						{message.message}
+					<p className={`text-muted-foreground ${status.color}`}>
+						{status.message}
 					</p>
 				</div>
 

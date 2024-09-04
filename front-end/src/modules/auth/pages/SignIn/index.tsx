@@ -19,12 +19,15 @@ import { login } from "./services";
 import type { z } from "zod";
 import type { Messagens, Status } from "./types";
 
+// Página de login de usuário
 export function SignInPage() {
 	const [searchParams] = useSearchParams();
 	const navigate = useNavigate();
 
+	// Verifica o status apartir do parâmetro da URL
 	const params = searchParams.get("status") as "created" | "expired";
 
+	// Feedback possíveis para ser exibido
 	const statusMessages: Messagens = {
 		default: {
 			message: "Digite seu email e senha para entrar",
@@ -40,8 +43,10 @@ export function SignInPage() {
 		},
 	};
 
+	// Cria o estado de acordo com o parâmetro da URL
 	const stateValue = statusMessages[params] || statusMessages.default;
 
+	// State responsável pelo feedback de erro/sucesso
 	const [status, setStatus] = useState<Status>(stateValue);
 
 	const form = useForm<z.infer<typeof loginSchema>>({
@@ -61,6 +66,7 @@ export function SignInPage() {
 			const errorMessage =
 				error instanceof Error ? error.message : "Ocorreu um erro inesperado.";
 
+			// Define o status de acordo com a resposta do back-end
 			setStatus({ message: errorMessage, color: "text-red-500" });
 		}
 	};
