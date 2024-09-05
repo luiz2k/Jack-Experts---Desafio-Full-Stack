@@ -18,7 +18,7 @@ async function main(): Promise<void> {
 		app.routes("/task", taskRoutes.getRoutes());
 
 		app.errorHandler();
-		app.swaggerDocumentation("/docs");
+		app.swaggerDocumentation(env.SWAGGER_ROUTE);
 
 		app.start(env.PORT);
 	} catch (error) {
