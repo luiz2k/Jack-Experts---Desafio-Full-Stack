@@ -1,6 +1,6 @@
 # Jack Experts - Desafio Full Stack
 
-Aplicação **full-stack** de gerenciamento de tarefas que permite criar, editar, excluir e visualizar tarefas.
+Aplicação **full stack** de gerenciamento de tarefas que permite criar, editar, excluir e visualizar tarefas.
 
 ![Demonstração](./imgs/demo.png)
 
@@ -8,7 +8,7 @@ Aplicação **full-stack** de gerenciamento de tarefas que permite criar, editar
 
 ## 📖 Sobre o BACK-END
 
-No **back-end**, toda a aplicação foi desenvolvido seguindo os princípios do **SOLID**. Além de um CRUD de tarefas, foi criado um middleware de autenticação que controla com **JSON Web Token** se o usuário que está gerenciando a tarefa está autenticado. Também foi implementado um middleware para controlar as instâncias de erros de acordo com o tipo de erro. Os serviços da aplicação foi testado utilizando o **Vitest**.
+No **back-end**, toda a aplicação foi desenvolvido seguindo os princípios do **SOLID**. Além de um CRUD de tarefas, foi criado um middleware de autenticação que controla com **JSON Web Token** se o usuário que está gerenciando a tarefa está autenticado. Também foi implementado um middleware para controlar as instâncias de erros de acordo com o tipo de erro. Os serviços da aplicação foi testado utilizando o **Vitest**. Todas as rotas da aplicação foram documentadas com o **Swagger**.
 
 ### ⚙️ Como rodar o back-end
 ```bash
@@ -36,14 +36,16 @@ $ npm start
 - TypeORM
 - Vitest
 - Zod
-- Json Web Token
+- JSON Web Token
+- Swagger
 
 ### Funcionalidades
 - CRUD de tarefas
 - Fluxo de autenticação
-- Middleware para controlar as instâncias de erros
+- Middleware para controlar as instâncias de erro
 - Testes unitários
 - Validação de dados
+- Documentação das rotas
 
 
 
