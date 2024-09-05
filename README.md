@@ -83,3 +83,9 @@ $ npm run preview
 - Buscar tarefa pela sua descricão
 - Fluxo de autenticação
 - Controle de rotas privadas
+
+---
+
+<div style="text-align: center; margin-top: 20px;">
+  <a href="https://desafio-jackexperts.vercel.app" target="_blank">VISITAR PROJETO</a>
+</div>
