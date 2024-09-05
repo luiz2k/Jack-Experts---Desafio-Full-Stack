@@ -12,7 +12,7 @@ export type TaskOutput = {
 	id: string;
 	description: string;
 	status: TaskStatus;
-	createdAt: Date;
+	createdAt: number;
 	user: {
 		id: string;
 	};

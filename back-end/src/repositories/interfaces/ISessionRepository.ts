@@ -1,15 +1,15 @@
 export type CreateSessionInput = {
 	userId: string;
 	token: string;
-	createdAt: Date;
-	expiresAt: Date;
+	createdAt: number;
+	expiresAt: number;
 };
 
 export type SessionOutput = {
 	id: string;
 	token: string;
-	createdAt: Date;
-	expiresAt: Date;
+	createdAt: number;
+	expiresAt: number;
 	isValid: boolean;
 	user: {
 		id: string;
@@ -19,8 +19,8 @@ export type SessionOutput = {
 export type UpdateSessionInput = {
 	id: string;
 	token?: string;
-	createdAt?: Date;
-	expiresAt?: Date;
+	createdAt?: number;
+	expiresAt?: number;
 	isValid?: boolean;
 };
 

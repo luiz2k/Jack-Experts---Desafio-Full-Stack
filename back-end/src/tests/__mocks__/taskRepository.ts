@@ -18,7 +18,7 @@ export class TaskRepository implements ITaskRepository {
 			id: randomUUID(),
 			description: data.description,
 			status: TaskStatus.Pending,
-			createdAt: new Date(),
+			createdAt: Date.now(),
 			user: {
 				id: data.userId,
 			},

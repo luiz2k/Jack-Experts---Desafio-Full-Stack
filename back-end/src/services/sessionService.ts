@@ -35,7 +35,7 @@ export class SessionService implements ISessionService {
 			}
 
 			// Se o token expirou, retorna false
-			if (session.expiresAt < new Date()) {
+			if (session.expiresAt < Date.now()) {
 				throw Error;
 			}
 
@@ -64,8 +64,8 @@ export class SessionService implements ISessionService {
 		await this.sessionRepository.createSession({
 			userId: userId,
 			token: token,
-			createdAt: new Date(TIMESTAMP_IN_MILLISECONDS),
-			expiresAt: new Date(EXPIRES_IN_ONE_HOUR * 1000),
+			createdAt: TIMESTAMP_IN_MILLISECONDS,
+			expiresAt: EXPIRES_IN_ONE_HOUR * 1000,
 		});
 
 		return {

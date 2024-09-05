@@ -1,7 +1,7 @@
 export type UpdateSessionInput = {
 	token: string;
-	createdAt?: Date;
-	expiresAt?: Date;
+	createdAt?: number;
+	expiresAt?: number;
 	isValid?: boolean;
 };
 
