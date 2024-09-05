@@ -73,7 +73,7 @@ export function SignUpPage() {
 								<FormItem>
 									<FormLabel>E-mail</FormLabel>
 									<FormControl>
-										<Input placeholder="@" {...field} />
+										<Input placeholder="@" type="email" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -87,7 +87,7 @@ export function SignUpPage() {
 								<FormItem>
 									<FormLabel>Senha</FormLabel>
 									<FormControl>
-										<Input placeholder="••••••••" {...field} />
+										<Input placeholder="••••••••" type="password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -101,7 +101,7 @@ export function SignUpPage() {
 								<FormItem>
 									<FormLabel>Confirme sua senha</FormLabel>
 									<FormControl>
-										<Input placeholder="••••••••" {...field} />
+										<Input placeholder="••••••••" type="password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>

@@ -88,7 +88,7 @@ export function SignInPage() {
 								<FormItem>
 									<FormLabel>E-mail</FormLabel>
 									<FormControl>
-										<Input placeholder="@" {...field} />
+										<Input placeholder="@" type="email" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -102,7 +102,7 @@ export function SignInPage() {
 								<FormItem>
 									<FormLabel>Senha</FormLabel>
 									<FormControl>
-										<Input placeholder="••••••••" {...field} />
+										<Input placeholder="••••••••" type="password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
