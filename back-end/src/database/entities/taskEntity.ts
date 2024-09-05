@@ -22,10 +22,10 @@ export class Task {
 
 	@Column({
 		name: "created_at",
-		type: "date",
+		type: "integer",
 		default: () => "CURRENT_TIMESTAMP",
 	})
-	createdAt!: Date;
+	createdAt!: number;
 
 	// Relacionamento
 	// Uma tarefa pertence a um usuário

@@ -16,11 +16,11 @@ export class Session {
 	@Column({ type: "varchar" })
 	token!: string;
 
-	@Column({ name: "created_at", type: "datetime" })
-	createdAt!: Date;
+	@Column({ name: "created_at", type: "integer" })
+	createdAt!: number;
 
-	@Column({ name: "expires_at", type: "datetime" })
-	expiresAt!: Date;
+	@Column({ name: "expires_at", type: "integer" })
+	expiresAt!: number;
 
 	@Column({ name: "is_valid", type: "boolean", default: true })
 	isValid!: boolean;
