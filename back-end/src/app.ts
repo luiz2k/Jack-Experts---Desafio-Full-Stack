@@ -32,6 +32,7 @@ export class App {
 		this.app.use(this.errorMiddleware.handle);
 	}
 
+	// Configura a documentação do Swagger
 	public swaggerDocumentation(path: string): void {
 		this.app.use(path, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 	}

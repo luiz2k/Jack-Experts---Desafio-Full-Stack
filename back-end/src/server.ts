@@ -6,11 +6,13 @@ import { taskRoutes } from "./routes/taskRoutes";
 import { userRoutes } from "./routes/userRoute";
 import { env } from "./validations/envValidation";
 
+// Responsável por configurar/iniciar o servidor
 async function main(): Promise<void> {
 	try {
-		await AppDataSource.initialize();
+		await AppDataSource.initialize(); // Inicia a conexão com o banco de dados
 
 		const app = new App();
+
 		app.config(env.CORS);
 
 		app.routes("/user", userRoutes.getRoutes());
