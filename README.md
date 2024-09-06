@@ -4,6 +4,8 @@ Aplicação **full stack** de gerenciamento de tarefas que permite criar, editar
 
 ![Demonstração](./imgs/demo.png)
 
+[VISITAR PROJETO](https://desafio-jackexperts.vercel.app)
+
 
 
 ## 📖 Sobre o BACK-END
@@ -71,10 +73,11 @@ $ npm run preview
 
 ### 🛠️ Tecnologias utilizadas
 - React.JS
+- React Router
 - TypeScript
-- TailwindCSS
+- Tailwind CSS
 - Shadcn/ui
-- React Hook Forms
+- React Hook Form
 - Zod
 
 ### Funcionalidades
@@ -83,9 +86,3 @@ $ npm run preview
 - Buscar tarefa pela sua descricão
 - Fluxo de autenticação
 - Controle de rotas privadas
-
----
-
-<div style="text-align: center; margin-top: 20px;">
-  <a href="https://desafio-jackexperts.vercel.app" target="_blank">VISITAR PROJETO</a>
-</div>
