@@ -2,6 +2,7 @@ import { createContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { getSession } from "../../helpers/getSession";
 import { signOut } from "../../services/signOut";
+import { createQueryString } from "../../utils/createQueryString";
 
 export const AuthContext = createContext(null);
 
@@ -31,7 +32,9 @@ export function AuthProvider({
 				if (sessionExpired) {
 					await signOut();
 
-					navigate("/entrar");
+					const query = createQueryString("status", "expired");
+
+					navigate(`/entrar?${query}`);
 				}
 			}
 		})();
